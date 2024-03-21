@@ -1,0 +1,7 @@
+RewriteEngine on
+
+# disable directory browsing
+Options -Indexes
+RewriteCond $1 !^(user_guide|index\.php|files|robots\.txt|install|auth|install_test|\.well-known)
+
+RewriteRule ^(.*)$ index.php/$1 [L]

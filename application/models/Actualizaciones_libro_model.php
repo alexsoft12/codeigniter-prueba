@@ -1,6 +1,6 @@
 <?php
 
-class Actualizaciones_Libro_model extends CI_Model
+class Actualizaciones_libro_model extends CI_Model
 {
 	public function __construct()
 	{

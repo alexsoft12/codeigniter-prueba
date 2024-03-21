@@ -1,0 +1,34 @@
+services:
+    php:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        ports:
+            -   "80:80"
+        depends_on:
+            - mysql
+        volumes:
+            -   .:/var/www/html
+    mysql:
+        image: mysql:5.7
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: Biblioteca
+            MYSQL_USER: prueba
+            MYSQL_PASSWORD: password
+        ports:
+            -   "3306:3306"
+        volumes:
+            - ./Biblioteca.sql:/docker-entrypoint-initdb.d/Biblioteca.sql
+            - mysql:/var/lib/mysql
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        environment:
+            PMA_HOST: mysql
+            MYSQL_ROOT_PASSWORD: root
+        ports:
+            -   "8081:80"
+        depends_on:
+            - mysql
+volumes:
+    mysql:
